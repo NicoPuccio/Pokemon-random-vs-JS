@@ -1,6 +1,6 @@
 //getPokemon(30);
 let list = document.querySelector("#pokemonList");
-let refreshBtn = document.querySelector("#refresh-Button");
+
 
 function getPokemon(id, num)
 {
@@ -26,7 +26,22 @@ function createPokemon(pokemon, num)
     img.setAttribute("src", pokemon.sprites.front_default);
     let name = item.getElementsByTagName("p")[0];
     name.textContent = pokemon.name;
+    movesButtons(pokemon, num);
 }
 getRandomPokemons();
+refreshButton();
 
-refreshBtn.addEventListener("click", (e) => getRandomPokemons());
+function refreshButton()
+{
+    let refreshBtn = document.querySelector("#refresh-Button");
+    refreshBtn.addEventListener("click", (e) => getRandomPokemons());
+}
+
+function movesButtons(pokemon, num)
+{
+    let moveBtn1 = document.querySelector("#move-button-1");
+    moveBtn1.textContent = pokemon.moves[1].move.name;
+    let moveBtn2 = document.querySelector("#move-button-2");
+    moveBtn2.textContent = pokemon.moves[1].move.name;
+}
+

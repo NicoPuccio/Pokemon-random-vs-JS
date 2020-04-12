@@ -43,6 +43,16 @@ body{
     background-color: #0D47A1;
 }
 
+#move-button-1:hover{
+    background-color: black;
+}
+#move-button-2{
+    background-color: #00897B;
+}
+#move-button-2:hover{
+    background-color: #004D40;
+}
+
 .vs{
     text-align: center;
     margin: auto;
