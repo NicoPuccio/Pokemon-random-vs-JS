@@ -26,6 +26,9 @@ function createPokemon(pokemon, num)
     img.setAttribute("src", pokemon.sprites.front_default);
     let name = item.getElementsByTagName("p")[0];
     name.textContent = pokemon.name;
+    let types = list.querySelector(`#pokemon-types-${num}`);
+    types.innerText = getPokemonTypes(pokemon);
+    getPokemonTypes(pokemon);
     movesButtons(pokemon, num);
 }
 getRandomPokemons();
@@ -39,9 +42,26 @@ function refreshButton()
 
 function movesButtons(pokemon, num)
 {
-    let moveBtn1 = document.querySelector("#move-button-1");
-    moveBtn1.textContent = pokemon.moves[1].move.name;
-    let moveBtn2 = document.querySelector("#move-button-2");
-    moveBtn2.textContent = pokemon.moves[1].move.name;
+    let moveBtn = document.querySelector(`#move-button-${num}`);
+    getMaxMovesNumber(pokemon);
+    moveBtn.textContent = pokemon.moves[getRandomInt(0,getMaxMovesNumber(pokemon))].move.name;
 }
 
+function getPokemonTypes(pokemon)
+{
+    let result = "";
+    for (let i = 0; i < pokemon.types.length; i++) {
+        result = result.concat(pokemon.types[i].type.name).concat(" ");
+    }
+    return result;
+}
+
+
+function getMaxMovesNumber(pokemon)
+{
+    return pokemon.moves.length;
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
